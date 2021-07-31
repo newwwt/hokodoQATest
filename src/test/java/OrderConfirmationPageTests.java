@@ -1,10 +1,7 @@
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.testng.annotations.*;
 import pages.OrderConfirmationPage;
-import util.DriverProvider;
-import util.Log;
+import util.DriverManager;
 
 import java.io.IOException;
 
@@ -14,12 +11,12 @@ public class OrderConfirmationPageTests {
 
     @BeforeMethod
     public void setUp() throws IOException {
-        driver = DriverProvider.getDriver();
+        driver = DriverManager.getDriver();
     }
 
     @AfterMethod
     public void tearDown() {
-        DriverProvider.tearDown();
+        DriverManager.tearDown();
     }
 
     @Test(dataProvider = "orders")
@@ -28,9 +25,8 @@ public class OrderConfirmationPageTests {
                 new OrderConfirmationPage(driver, order, plan, key, template);
         orderConfirmationPage.open();
         orderConfirmationPage.waitUntilLoaded();
+        orderConfirmationPage.validateMandatoryElements();
     }
-
-
 
     @DataProvider(name = "orders")
     public static Object[][] orderParameters() {

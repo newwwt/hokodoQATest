@@ -27,15 +27,7 @@ public class OrderConfirmationPage extends BasePage {
 
     @Override
     public void waitUntilLoaded() {
-        findElementByDataTestId("contactDetails");
-        findElementByDataTestId("contactInformation.details");
-        findElementByDataTestId("paymentTimeline");
-        findElementByDataTestId("paymentAuthorisation");
-        findElementByDataTestId("paymentMethod.direct_debit.label");
-        findElementByDataTestId("paymentMethod.invoice.label");
-        findElementByDataTestId("paymentMethod.card.label");
-        findElementByDataTestId("orderSummary");
-        findElementByDataTestId("orderSummary.products");
+        Log.info("Waiting for the Order Confirmation Page to load - looking for order summary");
         findElementByDataTestId("orderSummary.summary");
     }
 
@@ -47,12 +39,15 @@ public class OrderConfirmationPage extends BasePage {
     @Override
     public void validateMandatoryElements() {
         Log.info("Validating mandatory elements.");
-        assertElementDisplayed(findElementByDataTestId("contactDetails"),
-                "Contact Details section not found!");
-//        assertElementDisplayed(findElementByDataTestId("contactInformation.details"),
-//                "Contact information details section not found!");
-//        assertElementDisplayed(findElementByDataTestId("paymentTimeline"),
-//                "Payment timeline section not found!");
-
+        findElementByDataTestId("contactDetails");
+        findElementByDataTestId("contactInformation.details");
+        findElementByDataTestId("paymentTimeline");
+        findElementByDataTestId("paymentAuthorisation");
+        findElementByDataTestId("paymentMethod.direct_debit.label");
+        findElementByDataTestId("paymentMethod.invoice.label");
+        findElementByDataTestId("paymentMethod.card.label");
+        findElementByDataTestId("orderSummary");
+        findElementByDataTestId("orderSummary.products");
+        findElementByDataTestId("orderSummary.summary");
     }
 }

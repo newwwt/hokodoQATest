@@ -7,7 +7,7 @@ public class ConfigHelper {
 
     public static String retrieveProperty(String propertyName) throws IOException {
         final Properties properties = new Properties();
-        properties.load(DriverProvider.class.getClassLoader().getResourceAsStream("project.properties"));
+        properties.load(DriverManager.class.getClassLoader().getResourceAsStream("project.properties"));
         return properties.getProperty(propertyName);
     }
 

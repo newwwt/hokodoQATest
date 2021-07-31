@@ -8,7 +8,7 @@ import org.openqa.selenium.safari.SafariDriver;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-public class DriverProvider {
+public class DriverManager {
 
     private static WebDriver driver;
 
@@ -26,7 +26,7 @@ public class DriverProvider {
                 driver = new SafariDriver();
             } else throw new IllegalArgumentException("Unsupported target browser. Please use chrome or safari.");
         }
-        driver.manage().timeouts().implicitlyWait(360, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         return driver;
     }
 
