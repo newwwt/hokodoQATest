@@ -21,7 +21,7 @@ public class DriverManager {
                 driver = new ChromeDriver();
 
             } else if (targetBrowser.equals("safari")) {
-                if (!System.getProperty("os.name").equals("MacOS")) {
+                if (!System.getProperty("os.name").equals("Mac OS X")) {
                     throw new IllegalArgumentException("Safari tests can only be executed on MacOS. Please choose another browser");
                 }
                 driver = new SafariDriver();
