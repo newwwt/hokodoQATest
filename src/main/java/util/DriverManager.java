@@ -13,14 +13,15 @@ public class DriverManager {
     private static WebDriver driver;
 
     public static WebDriver getDriver() throws IOException {
-        if(driver == null) {
-            String targetBrowser = ConfigHelper.retrieveProperty("target.browser");
-            if(targetBrowser.equals("chrome")) {
+        if (driver == null) {
+            String targetBrowser = ConfigHelper.retrieveProperty("targetBrowser");
+            System.out.println("TARGET BROWSER: " + targetBrowser);
+            if (targetBrowser.equals("chrome")) {
                 WebDriverManager.chromedriver().setup();
                 driver = new ChromeDriver();
 
             } else if (targetBrowser.equals("safari")) {
-                if(!System.getProperty("os.name").equals("MacOS")) {
+                if (!System.getProperty("os.name").equals("MacOS")) {
                     throw new IllegalArgumentException("Safari tests can only be executed on MacOS. Please choose another browser");
                 }
                 driver = new SafariDriver();
