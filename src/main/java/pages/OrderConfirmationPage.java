@@ -74,8 +74,8 @@ public class OrderConfirmationPage extends BasePage {
                 wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//p[@data-testid='paymentInfo.accountName']")));
 
         String expectedName;
-        if(name.length() > 14) {
-            expectedName = name.substring(0,14).toLowerCase();
+        if (name.length() > 14) {
+            expectedName = name.substring(0, 14).toLowerCase();
         } else expectedName = name.toLowerCase();
         Assert.assertEquals(findElementByDataTestId("paymentInfo.accountName").getText().toLowerCase(), expectedName);
         Assert.assertEquals(findElementByDataTestId("paymentInfo.accountDetails").getText(),

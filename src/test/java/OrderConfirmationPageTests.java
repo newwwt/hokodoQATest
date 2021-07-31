@@ -7,6 +7,7 @@ import util.UserProvider;
 
 import java.io.IOException;
 import java.util.HashMap;
+
 public class OrderConfirmationPageTests {
 
     private WebDriver driver;
@@ -62,6 +63,7 @@ public class OrderConfirmationPageTests {
         directDebitModal.switchOutFromIframe();
         orderConfirmationPage.validateDirectDebitDetails(user.get("accountNumber"), user.get("firstName") + " " + user.get("lastName"));
     }
+
     @Test(dataProvider = "orders")
     public void validateCompanyUserCanAddValidDirectDebit(String order, String plan, String key, String template) throws IOException, InterruptedException {
         HashMap<String, String> user = UserProvider.getCompanyWithValidDirectDebit();

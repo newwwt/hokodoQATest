@@ -116,13 +116,11 @@ public class DirectDebitModal extends BasePage {
         WebDriverWait wait = new WebDriverWait(getDriver(), 20);
         WebElement element =
                 wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[@type='button']/span[.='Set up this Direct Debit']")));
-//        findElementByXPath("//button[@type='button']/span[.='Set up this Direct Debit']").click();
         element.click();
 
     }
 
     public void clickCloseThisWindow() {
-//        findElementByXPath("//button[@type='button']/span[.='Close this window']").click();
         WebDriverWait wait = new WebDriverWait(getDriver(), 20);
         WebElement element =
                 wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[@type='button']/span[.='Close this window']")));
@@ -132,7 +130,6 @@ public class DirectDebitModal extends BasePage {
     public void switchOutFromIframe() {
         getDriver().switchTo().defaultContent();
     }
-
 
 
 }

@@ -16,7 +16,6 @@ public class DriverManager {
     public static WebDriver getDriver() throws IOException {
         if (driver == null) {
             String targetBrowser = ConfigHelper.retrieveProperty("targetBrowser");
-            System.out.println("TARGET BROWSER: " + targetBrowser);
             if (targetBrowser.equals("chrome")) {
                 WebDriverManager.chromedriver().setup();
                 driver = new ChromeDriver();
