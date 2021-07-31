@@ -26,7 +26,8 @@ public class DriverManager {
                 driver = new SafariDriver();
             } else throw new IllegalArgumentException("Unsupported target browser. Please use chrome or safari.");
         }
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(25, TimeUnit.SECONDS);
+        driver.manage().window().maximize();
         return driver;
     }
 
