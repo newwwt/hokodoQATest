@@ -6,7 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
 import java.io.IOException;
-import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 public class DriverProvider {
 
@@ -14,25 +14,25 @@ public class DriverProvider {
 
     public static WebDriver getDriver() throws IOException {
         if(driver == null) {
-            String targetBrowser = retrieveProperty("target.browser");
+            String targetBrowser = ConfigHelper.retrieveProperty("target.browser");
             if(targetBrowser.equals("chrome")) {
                 WebDriverManager.chromedriver().setup();
                 driver = new ChromeDriver();
 
             } else if (targetBrowser.equals("safari")) {
-                if(System.getProperty("os.name") != "MacOS") {
+                if(!System.getProperty("os.name").equals("MacOS")) {
                     throw new IllegalArgumentException("Safari tests can only be executed on MacOS. Please choose another browser");
                 }
                 driver = new SafariDriver();
             } else throw new IllegalArgumentException("Unsupported target browser. Please use chrome or safari.");
         }
+        driver.manage().timeouts().implicitlyWait(360, TimeUnit.SECONDS);
         return driver;
     }
 
-    public static String retrieveProperty(String propertyName) throws IOException {
-        final Properties properties = new Properties();
-        properties.load(DriverProvider.class.getClassLoader().getResourceAsStream("project.properties"));
-        return properties.getProperty(propertyName);
+    public static void tearDown() {
+        driver.quit();
+        driver = null;
     }
 
 }
