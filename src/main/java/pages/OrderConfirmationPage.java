@@ -1,9 +1,8 @@
 package pages;
 
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import util.ConfigHelper;
 import util.Log;
@@ -32,7 +31,8 @@ public class OrderConfirmationPage extends BasePage {
     @Override
     public void waitUntilLoaded() {
         Log.info("Waiting for the Order Confirmation Page to load - looking for direct debit section");
-        findElementByCssSelector("#direct_debit");
+        WebDriverWait wait = new WebDriverWait(getDriver(), 20);
+        WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("direct_debit")));
     }
 
     @Override
@@ -69,6 +69,10 @@ public class OrderConfirmationPage extends BasePage {
     }
 
     public void validateDirectDebitDetails(String accountNumber, String name) {
+        WebDriverWait wait = new WebDriverWait(getDriver(), 30);
+        WebElement element =
+                wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//p[@data-testid='paymentInfo.accountName']")));
+
         String expectedName;
         if(name.length() > 14) {
             expectedName = name.substring(0,14).toLowerCase();

@@ -1,7 +1,11 @@
 package modals;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.BasePage;
 import util.Log;
 
@@ -20,7 +24,9 @@ public class DirectDebitModal extends BasePage {
     @Override
     public void waitUntilLoaded() {
         Log.info("Waiting for the Direct Debit modal to be loaded - looking for Sort Code field");
-        findElementByCustomAttribute("name", "branchCode");
+        WebDriverWait wait = new WebDriverWait(getDriver(), 20);
+        WebElement element =
+                wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@name='branchCode']")));
     }
 
     @Override
@@ -34,6 +40,8 @@ public class DirectDebitModal extends BasePage {
     }
 
     public void switchToModalIframe() {
+        WebDriverWait wait = new WebDriverWait(getDriver(), 20);
+        WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("iframeId")));
         getDriver().switchTo().frame("iframeId");
     }
 
@@ -105,12 +113,20 @@ public class DirectDebitModal extends BasePage {
     }
 
     public void clickSetUpThisDirectDebit() {
-        findElementByXPath("//button[@type='button']/span[.='Set up this Direct Debit']").click();
+        WebDriverWait wait = new WebDriverWait(getDriver(), 20);
+        WebElement element =
+                wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[@type='button']/span[.='Set up this Direct Debit']")));
+//        findElementByXPath("//button[@type='button']/span[.='Set up this Direct Debit']").click();
+        element.click();
 
     }
 
     public void clickCloseThisWindow() {
-        findElementByXPath("//button[@type='button']/span[.='Close this window']").click();
+//        findElementByXPath("//button[@type='button']/span[.='Close this window']").click();
+        WebDriverWait wait = new WebDriverWait(getDriver(), 20);
+        WebElement element =
+                wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[@type='button']/span[.='Close this window']")));
+        element.click();
     }
 
     public void switchOutFromIframe() {
