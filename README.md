@@ -8,6 +8,7 @@
 1. Clone the repo
 2. To run the tests on Chrome, run `mvn test -DtargetBrowser=chrome` 
 3. To run the tests on Safari, run `mvn test -DtargetBrowser=safari`
+
 The tests will run on Chrome by default if no target is specified.
 
 The report is generated in `/target/surefire-reports/index.html`
